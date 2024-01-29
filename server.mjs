@@ -12,6 +12,9 @@ app.use('/plants', plants)
 import users from './routes/users.mjs';
 app.use('/users', users)
 
+import purchases from './routes/purchases.mjs'
+app.use('/purchases', purchases)
+
 app.listen(PORT, ()=> {
     console.log(`Server is running on port: ${PORT}`)
 })

@@ -5,21 +5,21 @@ import { ObjectId } from 'mongodb'
 const router = express.Router()
 
 
-// Get all users
+// Get all purchases
 router.get('/', async (req, res)=>{
-    let collection = await db.collection('users');
+    let collection = await db.collection('purchases');
     let query = {}
     let result = await collection.find(query).toArray()
     if (!result) res.send("Not found").status(404)
     else res.send(result).status(200)
 })
 
-// Add a new user via POST request
+// Add a new purchase/order via POST request
 // sample data
-// {"email": "first.last@mail.com","first_name": "first","last_name": "last"}
+// {"email": "test.purchase@mail.com", "items": [{"Begonia": 10}, {"Daisy" : 5}]}
 
 router.post('/', async (req, res) => {
-    let collection = await db.collection('users');
+    let collection = await db.collection('purchases');
     let newDocument = req.body;
 
     let result = await collection.insertOne(newDocument);
@@ -28,20 +28,34 @@ router.post('/', async (req, res) => {
 })
 
 
-// Get a user by id
+// Get a purchase by id
 router.get('/:id', async (req, res)=> {
-    let collection = await db.collection('users')
-    let query = { _id: new ObjectId(req.params.id )}
+    let collection = await db.collection('purchases')
+    let query = { _id: new ObjectId(req.params.id)}
     let result = await collection.findOne(query);
 
     if (!result) res.send("Not found").status(404)
     else res.send(result).status(200)
 })
 
-// Delete a user by id
+// Update a purchase - Add item to the purchase list
+router.patch('/:id/add', async (req, res)=> {
+    let collection = await db.collection('purchases')
+    let query = { _id: new ObjectId(req.params.id)}
+    
+    let result = await collection.updateOne(query, {
+        $push: { items: req.body }
+    })
+
+    if (!result) res.send("Not found").status(404)
+    else res.send(result).status(200)
+})
+
+
+// Delete a purchase by id
 router.delete('/:id', async (req, res)=> {
-    let collection = await db.collection('users')
-    let query = { _id: new ObjectId(req.params.id )}
+    let collection = await db.collection('purchases')
+    let query = { _id: new ObjectId(req.params.id)}
     let result = await collection.deleteOne(query);
 
     if (!result) res.send("Not found").status(404)
