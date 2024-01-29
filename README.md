@@ -8,7 +8,9 @@
 - Create MongoDB validation rules.
 - Use MongoDB validation to ensure data consistency.
 
-All routes in this application:
+#### All routes in this application:
+- GET /seed: Fill database with hardcoded data - for testing purpose
+
 - GET /users: View all users
 - POST /users: Add a new user
 
