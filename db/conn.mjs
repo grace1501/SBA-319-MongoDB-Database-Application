@@ -15,6 +15,6 @@ try {
     console.log(e)
 }
 
-let db = conn.db('sample_training');
+let db = conn.db('PlantsAPI');
 
 export default db;

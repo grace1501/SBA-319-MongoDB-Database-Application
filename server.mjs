@@ -6,8 +6,11 @@ const app = express()
 
 app.use(express.json())
 
-import grades from './routes/grades.mjs';
-app.use('/grades', grades)
+import plants from './routes/plants.mjs';
+app.use('/plants', plants)
+
+import users from './routes/users.mjs';
+app.use('/users', users)
 
 app.listen(PORT, ()=> {
     console.log(`Server is running on port: ${PORT}`)
