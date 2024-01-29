@@ -15,6 +15,7 @@ try {
     console.log(e)
 }
 
-let db = conn.db('Test');
+// Change this database and use '/seed' route to populate data
+let db = conn.db('PlantsAPI');
 
 export default db;
