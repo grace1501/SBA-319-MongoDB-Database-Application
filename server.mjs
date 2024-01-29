@@ -15,6 +15,9 @@ app.use('/users', users)
 import purchases from './routes/purchases.mjs'
 app.use('/purchases', purchases)
 
+import seed from './routes/seed.mjs'
+app.use('/seed', seed)
+
 app.listen(PORT, ()=> {
     console.log(`Server is running on port: ${PORT}`)
 })
