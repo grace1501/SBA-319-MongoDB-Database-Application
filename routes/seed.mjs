@@ -1,7 +1,13 @@
 import express from 'express'
+import db from '../db/conn.mjs'
+
 const router = express.Router()
 
-router.get("/seed", async (req, res) => {
+let plants = db.collection('plants');
+let users = db.collection('users');
+let purchases = db.collection('purchases');
+
+router.get("/", async (req, res) => {
     try {
 
     await plants.deleteMany({}) 
@@ -363,6 +369,7 @@ router.get("/seed", async (req, res) => {
     res.send("Success");
     
     } catch (err) {
+        console.log(err)
         res.status(500).send("Something went wrong.")
     }
 })

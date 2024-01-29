@@ -8,7 +8,7 @@ const router = express.Router()
 // Get all plants
 router.get('/', async (req, res)=>{
     try {
-        let collection = await db.collection('plants');
+    let collection = await db.collection('plants');
     let query = {}
     let result = await collection.find(query).toArray()
     if (!result) res.send("Not found").status(404)

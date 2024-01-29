@@ -15,6 +15,6 @@ try {
     console.log(e)
 }
 
-let db = conn.db('PlantsAPI');
+let db = conn.db('Test');
 
 export default db;
